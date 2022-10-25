@@ -1,0 +1,10 @@
+version: "3"
+services:
+  getnet-py:
+    build: "."
+    volumes:
+      - ".:/getnet-py"
+      - "packages:/usr/local/lib/python3.7/site-packages/"
+volumes:
+  packages:
+    driver: local
