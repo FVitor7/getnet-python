@@ -1,7 +1,7 @@
 getnet-python 
 =========
-This project is a fork of [Getnet-py](https://github.com/ramon/getnet-py) 
-This project provider a SDK to handler Getnet API.
+#### This project is a fork of [Getnet-py](https://github.com/ramon/getnet-py) 
+#### This project provider a SDK to handler Getnet API.
 
 Installation
 ------------
