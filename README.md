@@ -125,5 +125,5 @@ cancel_payment_credit.credit_cancel.message # "Credit transaction cancelled suce
 Authors
 ------
 Fábio Vitor <fabvitor2010@gmail.com> 
-&
+and
 Ramon Soares <contact@ramon.dev.br>
