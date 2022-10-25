@@ -114,10 +114,3 @@ canceled_order = client.capture_credit_transaction(id_pagamento, "2000")
 canceled_order.status # CANCELED
 cancel_payment_credit.credit_cancel.message # "Credit transaction cancelled sucessfully"
 ```
-
-Authors
-------
-
-Fábio Vitor <fabvitor2010@gmail.com> 
-and
-Ramon Soares <contact@ramon.dev.br>
