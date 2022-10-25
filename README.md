@@ -1,4 +1,4 @@
-getnet-python [![Build Status](https://app.travis-ci.com/FVitor7/getnet-python.svg?branch=master)](https://app.travis-ci.com/FVitor7/getnet-python) 
+getnet-python
 =========
 #### This project is a fork of [Getnet-py](https://github.com/ramon/getnet-py) 
 #### This project provider a SDK to handler Getnet API.
