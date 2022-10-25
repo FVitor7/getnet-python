@@ -9,7 +9,7 @@ import logging
 from .client import Client
 from .environment import Environment
 
-__version__ = "1.0"
+__version__ = "1.1"
 
 import requests
 
