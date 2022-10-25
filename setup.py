@@ -23,7 +23,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name=APP_NAME,
     version=VERSION,
-    description="A Getnet Santander SDK",
+    description="A Getnet SDK",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Fabio Vitor",

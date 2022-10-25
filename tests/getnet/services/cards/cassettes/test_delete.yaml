@@ -1,0 +1,221 @@
+interactions:
+- request:
+    body: '{"card_number": "5155901222280001", "customer_id": "getnet-py"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer 38df6086-b0eb-42c3-962f-9867a6b979cf
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '63'
+      Content-Type:
+      - application/json
+      seller_id:
+      - d167cde9-1c7f-4af9-a8a2-d38424dad863
+      user-agent:
+      - getnet-py/1.1
+    method: POST
+    uri: https://api-homologacao.getnet.com.br/v1/tokens/card
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAAXBQQ4CMQgAwLOb7B9MX0BbaMHPGKBwMa6J0ZPx7zvz27dLOb5Pi/f983rEUW7X
+        ksqRTYIWVLWqqQqIHUx69zaRwSOUO5lSDnNPFjRCYKgO6OEDkFimkwGmeYKstirMNaBR6y298khc
+        vbrIooCGuWQi9KlBZd/+J/z+oemZAAAA
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '138'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 14 Sep 2020 16:54:20 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-EdgeConnect-MidMile-RTT:
+      - '15'
+      X-EdgeConnect-Origin-MEX-Latency:
+      - '293'
+      X-Powered-By:
+      - '50265'
+      preload:
+      - ''
+    status:
+      code: 201
+      message: Created
+- request:
+    body: '{"customer_id": "johndoe", "number_token": "fa8ef29e5d01ab1afaa04430b933c27480ceea835ba5f6bccf894b540801c04cec6045897c5b04fbcf09d2d107d6025232fc186f4d31c99d5e024fd974037ae5",
+      "cardholder_name": "John Doe", "expiration_month": "02", "expiration_year":
+      "25", "cardholder_identification": "5155901222280001", "security_code": "123",
+      "verify_card": false, "brand": "visa"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer 38df6086-b0eb-42c3-962f-9867a6b979cf
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '368'
+      Content-Type:
+      - application/json
+      Cookie:
+      - 072ba6da8cfecb469b466850b27f949a=7f28eb0a7b887c4cd3ab0055903e5751
+      seller_id:
+      - d167cde9-1c7f-4af9-a8a2-d38424dad863
+      user-agent:
+      - getnet-py/1.1
+    method: POST
+    uri: https://api-homologacao.getnet.com.br/v1/cards
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAA3OW4pCMQwA0L30ey6kTdImbkbSPGAYRkH0S9y7dwEHzru5PeL6G+3SwlnIaB2O
+        vg4iwUMp45DZCwUGOWT7abfX/87H9Xn/y9upyiRraHJAt92tzIAIYSuij0UCnmmCvI1rbvcSpc0E
+        At2BPH0Csehy3kC1vUBjRIcVEwYPHOVdZlFgd9XgPCcVughwWXL7fAGhWcWBxAAAAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '163'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 14 Sep 2020 16:54:21 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-EdgeConnect-MidMile-RTT:
+      - '15'
+      X-EdgeConnect-Origin-MEX-Latency:
+      - '596'
+      X-Powered-By:
+      - '50265'
+      preload:
+      - ''
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer 38df6086-b0eb-42c3-962f-9867a6b979cf
+      Connection:
+      - keep-alive
+      Cookie:
+      - 072ba6da8cfecb469b466850b27f949a=7f28eb0a7b887c4cd3ab0055903e5751
+      seller_id:
+      - d167cde9-1c7f-4af9-a8a2-d38424dad863
+      user-agent:
+      - getnet-py/1.1
+    method: GET
+    uri: https://api-homologacao.getnet.com.br/v1/cards/dc584a47-c3c7-4483-94ed-861f38024c0e
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAH1RuU7EMBD9FZSaoPExjp2aipqKJhpfrGE3XiXOCoT4dyYrbYGEcGHpXfYb+6sL
+        tMSpxG7sYkCrSQ99UGHotbaqdzrF3hqRlQWpA6TuvjvS2qZct2WK5bW0lZMAIFjxZWaAAtEBw/Rx
+        Lgu1UufpVOd26Eb5i/xMtDCHHFxo3htcykoc3Csd6jGmZZrplFh4qof57rHu14dtbfXE0rXzGwvx
+        ys/byTPb6nvaWwSPKCwvtFJiNDankIXKMXuNlH0Eg+R5LB+MBmAsrYGkpKNMXmYppHRGOcQgswfe
+        00DWBaWGAbQhyJacVVEKDFoLkV2K2anojeXj0HOjbU1xosZlJEjowfVCPwszoh4lPPCbvezjLIna
+        3z6Fo5A333aO//nUzbc2atv+JxRauaTu+wfJmqkl4gEAAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '319'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 14 Sep 2020 16:54:21 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-EdgeConnect-MidMile-RTT:
+      - '7'
+      X-EdgeConnect-Origin-MEX-Latency:
+      - '78'
+      X-Powered-By:
+      - '50265'
+      preload:
+      - ''
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer 38df6086-b0eb-42c3-962f-9867a6b979cf
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Cookie:
+      - 072ba6da8cfecb469b466850b27f949a=7f28eb0a7b887c4cd3ab0055903e5751
+      seller_id:
+      - d167cde9-1c7f-4af9-a8a2-d38424dad863
+      user-agent:
+      - getnet-py/1.1
+    method: DELETE
+    uri: https://api-homologacao.getnet.com.br/v1/cards/dc584a47-c3c7-4483-94ed-861f38024c0e
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Date:
+      - Mon, 14 Sep 2020 16:54:21 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-EdgeConnect-MidMile-RTT:
+      - '7'
+      X-EdgeConnect-Origin-MEX-Latency:
+      - '270'
+      X-Powered-By:
+      - '50265'
+      preload:
+      - ''
+    status:
+      code: 204
+      message: No Content
+version: 1

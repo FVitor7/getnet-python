@@ -1,0 +1,133 @@
+interactions:
+- request:
+    body: '{"seller_id": "d167cde9-1c7f-4af9-a8a2-d38424dad863", "customer_id": "test_integration_get",
+      "first_name": "Jo\u00e3o", "last_name": "da Silva", "document_type": "CPF",
+      "document_number": "01234567811", "birth_date": "1976-02-21", "phone_number":
+      "5551999887766", "celphone_number": "5551999887766", "email": "customer@email.com.br",
+      "observation": "O cliente tem interesse no plano x.", "address": {"street":
+      "Av. Brasil", "number": "1000", "complement": "Sala 1", "district": "S\u00e3o
+      Geraldo", "city": "Porto Alegre", "state": "RS", "country": "Brasil", "postal_code":
+      "90230060"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer e29509fd-b564-44c6-84f2-54b602220b8f
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '585'
+      Content-Type:
+      - application/json
+      Cookie:
+      - 0d0646cad067a2ca0c6f661a843443de=4851325fe1f9719a36fdb829b0d04a3b; 0d0646cad067a2ca0c6f661a843443de=bb9a87410a67c72f776745fa57d440e8
+      seller_id:
+      - d167cde9-1c7f-4af9-a8a2-d38424dad863
+      user-agent:
+      - getnet-py/1.1
+    method: POST
+    uri: https://api-homologacao.getnet.com.br/v1/customers
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAIVRy27CMBD8FSvnJnIC5MGptFIr9VJUPiBa7AUsOXFkb6IixNf0U/pjXaMCvfXi
+        w8zs7sz4lAS0Fn1rdLJMdF5WSmOT5qrapXPYNSnUUKR6Vs+LuQZdl7PkIVFjINddhwgDtaYn3Hsg
+        4/p2j8SinfGM99Aha97c95dj0MId0yA2xk7AsHZq7LCnlo5DpJ7XL3/Rfuy26BmXeTGbL8qqznPm
+        h4Pr8U4uFou8aZq6rqqyjC7R/qPYGk+HVgPFm3lTlaks0iKudtuAfrrEYepdKGvYCArCTsSoHkNA
+        0TsxWOD3M+MZ7MBYVl/bebwAmXJdtvXMBwIaAwtAkZmQEdA6LkqWJyY9cm3LZDVl4slD4FUcwXWD
+        xdgBMxuwIKK5W55cShl7Mjxt1EXDNYtX9GB1rFsZOjK6dp6cWFn+Ifw1EhN/bC4nxp58VN2uDo4V
+        tlVOR1Uji5mUpUzO5x+PmXyrLQIAAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '364'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 14 Sep 2020 17:54:02 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Set-Cookie:
+      - 0d0646cad067a2ca0c6f661a843443de=bb9a87410a67c72f776745fa57d440e8; Path=/v1;
+        HttpOnly; Secure; Domain=api-homologacao.getnet.com.br
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-EdgeConnect-MidMile-RTT:
+      - '10'
+      X-EdgeConnect-Origin-MEX-Latency:
+      - '223'
+      X-Powered-By:
+      - '50925'
+      preload:
+      - ''
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer e29509fd-b564-44c6-84f2-54b602220b8f
+      Connection:
+      - keep-alive
+      Cookie:
+      - 0d0646cad067a2ca0c6f661a843443de=4851325fe1f9719a36fdb829b0d04a3b; 0d0646cad067a2ca0c6f661a843443de=bb9a87410a67c72f776745fa57d440e8
+      seller_id:
+      - d167cde9-1c7f-4af9-a8a2-d38424dad863
+      user-agent:
+      - getnet-py/1.1
+    method: GET
+    uri: https://api-homologacao.getnet.com.br/v1/customers/test_integration_get
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAIVRy27CMBD8FSvnJnIC5MGptFIr9VJUPiBa7AUsOXFkb6IixNf0U/pjXaMCvfXi
+        w8zs7sz4lAS0Fn1rdLJMdF5WSmOT5qrapXPYNSnUUKR6Vs+LuQZdl7PkIVFjINddhwgDtaYn3Hsg
+        4/p2j8SinfGM99Aha97c95dj0MId0yA2xk7AsHZq7LCnlo5DpJ7XL3/Rfuy26BmXeTGbL8qqznPm
+        h4Pr8U4uFou8aZq6rqqyjC7R/qPYGk+HVgPFm3lTlaks0iKudtuAfrrEYepdKGvYCArCTsSoHkNA
+        0TsxWOD3M+MZ7MBYVl/bebwAmXJdtvXMBwIaAwtAkZmQEdA6LkqWJyY9cm3LZDVl4slD4FUcwXWD
+        xdgBMxuwIKK5W55cShl7Mjxt1EXDNYtX9GB1rFsZOjK6dp6cWFn+Ifw1EhN/bC4nxp58VN2uDo4V
+        tlVOR1Uji5mUpUzO5x+PmXyrLQIAAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '364'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 14 Sep 2020 17:54:02 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Set-Cookie:
+      - 0d0646cad067a2ca0c6f661a843443de=4851325fe1f9719a36fdb829b0d04a3b; Path=/v1/customers;
+        HttpOnly; Secure; Domain=api-homologacao.getnet.com.br
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-EdgeConnect-MidMile-RTT:
+      - '9'
+      X-EdgeConnect-Origin-MEX-Latency:
+      - '89'
+      X-Powered-By:
+      - '50925'
+      preload:
+      - ''
+    status:
+      code: 200
+      message: OK
+version: 1

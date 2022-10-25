@@ -24,7 +24,7 @@ class Service(BaseService):
                 "Authorization": "Bearer {}".format(self._client.access_token),
                 "Content-Type":"application/json"
             }
-        )
+        )  
         
         response = self._post(self.path, json=card.as_dict())
         return CardToken(response.get("number_token"))

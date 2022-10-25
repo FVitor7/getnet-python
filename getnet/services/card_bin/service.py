@@ -8,23 +8,17 @@ from getnet.services.verification.card_verified import CardVerified
 class Service(BaseService):
     """Represents the token service operations"""
 
-    path = "/v1/cards/verification"
+    path = "/v1/cards/binlookup/"
 
-    def verification(self, card: CardVerification):
-        """Generate an token for the card data
-
-        Args:
-            card (Card:
-        """
-
-
+    def binlookup(self, card_bin: str):
         self._client.request.headers = (
             {
-                "Accept":"application/json, text/plain, */*",
                 "Authorization": "Bearer {}".format(self._client.access_token),
-                "Content-Type":"application/json"
             }
         )
-        
-        response = self._post(self.path, json=card.as_dict())
-        return CardVerified(response.get("status"))
+
+        url = f"{self.path}{card_bin}"
+
+        response = self._get(url)
+
+        return response.json()

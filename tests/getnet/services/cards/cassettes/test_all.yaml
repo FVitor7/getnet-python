@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer 38df6086-b0eb-42c3-962f-9867a6b979cf
+      Connection:
+      - keep-alive
+      Cookie:
+      - 072ba6da8cfecb469b466850b27f949a=7f28eb0a7b887c4cd3ab0055903e5751
+      seller_id:
+      - d167cde9-1c7f-4af9-a8a2-d38424dad863
+      user-agent:
+      - getnet-py/1.1
+    method: GET
+    uri: https://api-homologacao.getnet.com.br/v1/cards?status=Status.ALL&customer_id=johndoe
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAH1RyU7DMBD9FeQzQd7GsXPmxJkTCEXjjRrauEqcClT135lU6gEJ4YPlt8z4jX1m
+        Aee4sOH1fD2NJbKBxQBWo+67oELfaW1V53SKnTUiK8ulDjyxe7bHpY25rvMYy3tp1IVxzgUpvkwE
+        QAA4TjB9HcuMrdRpPNSp7dggf5HfCWfigApnnLYEp7IgFW6RdnUf0zxOeEgkPNXddPdYt+vDurR6
+        IOma+YOEeOWn9eCJbfUzbSmCBxCWFlgpIRqbU8hC5Zi9Bsw+cgPoaSwfjOacsLSGJyUdZvQySyGl
+        M8oBBJk9pz31aF1Qqu+5NsizRWdVlAKC1kJkl2J2KnpjqR14SrQuKY7YKIzkknfcdUI/CzNoGHT/
+        QG/2so0zJ2x/+xQMQt586zH+51M339KwrdufYGjllNjl7fID3RGQ8u4BAAA=
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '329'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 14 Sep 2020 16:49:47 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-EdgeConnect-MidMile-RTT:
+      - '48'
+      X-EdgeConnect-Origin-MEX-Latency:
+      - '211'
+      X-Powered-By:
+      - '50239'
+      preload:
+      - ''
+    status:
+      code: 200
+      message: OK
+version: 1

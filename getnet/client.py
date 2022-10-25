@@ -5,7 +5,8 @@ from typing import Union, Optional
 import requests
 
 from getnet.environment import Environment
-from getnet.services import token, verification
+from getnet.services import card_bin, token, verification, payments
+from getnet.services.payments.credit import card
 from getnet.services.token.card_token import CardToken
 from getnet.utils import handler_request, handler_request_exception
 
@@ -153,11 +154,7 @@ class Client(object):
         """Return a instance of token service"""
         return token.Service(self)
 
-    def verification_service(self) -> verification.Service:
-        """Return a instance of token service"""
-        return verification.Service(self)
-
-    def generate_token_card(self, card_number: str, customer_id: str) -> CardToken:
+    def generate_card_token(self, card_number: str, customer_id: str) -> CardToken:
         """Shortcut to card token generation
 
         Args:
@@ -169,16 +166,51 @@ class Client(object):
         """
         return self.token_service().generate(token.CardNumber(card_number, customer_id))
 
-    def generate_verification_card(self, number_token): #, expiration_month, expiration_year, brand=None, cardholder_name=None, security_code=None):
-        data = {
-                    "number_token": number_token,
-                    "brand": "Mastercard",
-                    "cardholder_name": "JOAO DA SILVA",
-                    "expiration_month": "12",
-                    "expiration_year": "28",
-                    "security_code": "123"
-                }
+    def verification_service(self) -> verification.Service:
+        """Return a instance of token service"""
+        return verification.Service(self)
 
-        return self.verification_service().verification(data)
+    def card_verified(self, number_token, expiration_month, expiration_year,  cardholder_name, brand=None, security_code=None) -> bool:
+        return self.verification_service().verification(verification.CardVerification(number_token, expiration_month, expiration_year, cardholder_name, brand, security_code))
 
+    def check_bin_service(self) -> card_bin.Service:
+        """Return a instance of token service"""
+        return card_bin.Service(self)
+
+    def card_bin(self, card_bin: str) -> dict:
+        return self.check_bin_service().binlookup(card_bin)
+
+    def order(self, order_id: str, sales_tax: int = None, product_type: str = None) -> payments.Order:
+        return payments.Order(order_id, sales_tax, product_type)
     
+    def customer(self, customer_id: str) -> payments.Customer:
+        return payments.Customer(customer_id)
+    
+    # Payments  Credit
+    def payment_credit_service(self) -> payments.credit.Service:
+        """Return a instance of token service"""
+        return payments.credit.Service(self)
+
+    def credit_card(self,number_token, cardholder_name, security_code, brand, expiration_month, expiration_year) -> card.Card:
+        return card.Card(number_token=number_token, cardholder_name=cardholder_name, security_code=security_code, brand=brand, expiration_month=expiration_month, expiration_year=expiration_year)
+
+    def create_credit_transaction(self, amount, delayed, pre_authorization, save_card_data, transaction_type, number_installments, order, customer, card, currency="BRL") -> payments.credit.Service:
+        credit = {
+            "delayed": delayed,
+            "pre_authorization": pre_authorization,
+            "save_card_data": save_card_data,
+            "transaction_type": transaction_type,
+            "number_installments": number_installments,
+            "card": card._as_dict()
+        }
+
+        return self.payment_credit_service().create(amount, currency, order, credit, customer)
+
+    def cancel_credit_transaction(self, payment_id):
+        return self.payment_credit_service().cancel(payment_id)
+
+    def capture_credit_transaction(self, payment_id: str, amount: str):
+        return self.payment_credit_service().capture(payment_id, amount)
+
+    def adjust_credit_transaction(self, payment_id: str, amount: str, currency="BRL"):
+        return self.payment_credit_service().adjust(payment_id, amount, currency)

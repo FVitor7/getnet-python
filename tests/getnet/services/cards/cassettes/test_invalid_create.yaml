@@ -1,0 +1,52 @@
+interactions:
+- request:
+    body: '{"customer_id": "johndoe", "number_token": "123", "cardholder_name": "John
+      Doe", "expiration_month": "02", "expiration_year": "25", "cardholder_identification":
+      "5155901222280001", "security_code": "123", "verify_card": false, "brand": "visa"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer 38df6086-b0eb-42c3-962f-9867a6b979cf
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '243'
+      Content-Type:
+      - application/json
+      seller_id:
+      - d167cde9-1c7f-4af9-a8a2-d38424dad863
+      user-agent:
+      - getnet-py/1.1
+    method: POST
+    uri: https://api-homologacao.getnet.com.br/v1/cards
+  response:
+    body:
+      string: '{   "message": "Bad Request",   "name": "GatewayTokenizationServiceError",   "status_code":
+        400,   "details": [     {       "status": "DENIED",       "error_code": "TOKENIZATION-400",       "payment_id":
+        "84f86528-26b2-482c-84f7-ecde2dd4f77f", "description": "Invalid Authorization",       "description_detail":
+        "Invalid number_token, verify or renew your number_token, it is valid for
+        only one attempt."     }   ] }'
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '416'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 14 Sep 2020 16:45:13 GMT
+      Server:
+      - Apache-Coyote/1.1
+      X-EdgeConnect-MidMile-RTT:
+      - '118'
+      X-EdgeConnect-Origin-MEX-Latency:
+      - '167'
+      X-Powered-By:
+      - '50207'
+    status:
+      code: 400
+      message: Bad Request
+version: 1

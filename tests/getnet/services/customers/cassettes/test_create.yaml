@@ -1,0 +1,130 @@
+interactions:
+- request:
+    body: scope=oob&grant_type=client_credentials
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Basic MTFlNzkzMzEtMzcwNS00OWE4LTk0OGYtMGNmNDU0ODg2MTJkOjVkMzkzNDIwLWIyMjEtNDQyMy1iNDg2LTE2MWUyYTgyZjMzMg==
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '39'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      seller_id:
+      - d167cde9-1c7f-4af9-a8a2-d38424dad863
+      user-agent:
+      - getnet-py/1.1
+    method: POST
+    uri: https://api-homologacao.getnet.com.br/auth/oauth/v2/token
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAC3MsQqEMBAE0F7wH2RrA8u6CXqlPxJM3IAIF0ks7hD/XYm2M/PmqKumgcl7ydnu
+        cZUvfEBo0DiEWTltWDF7o3oOpDQ7g0SErg/QFlmI3f+b3G6UKUl6G/ltS5Jsl/uxM4hPmn0s0xgd
+        1NV5ATWqKJF/AAAA
+    headers:
+      Cache-Control:
+      - no-store
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '126'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 14 Sep 2020 17:38:39 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - Apache-Coyote/1.1
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-EdgeConnect-MidMile-RTT:
+      - '111'
+      X-EdgeConnect-Origin-MEX-Latency:
+      - '58'
+      X-Powered-By:
+      - '50606'
+      preload:
+      - ''
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"seller_id": "d167cde9-1c7f-4af9-a8a2-d38424dad863", "customer_id": "customer_21081826",
+      "first_name": "Jo\u00e3o", "last_name": "da Silva", "document_type": "CPF",
+      "document_number": "01234567888", "birth_date": "1976-02-21", "phone_number":
+      "5551999887766", "celphone_number": "5551999887766", "email": "customer@email.com.br",
+      "observation": "O cliente tem interesse no plano x.", "address": {"street":
+      "Av. Brasil", "number": "1000", "complement": "Sala 1", "district": "S\u00e3o
+      Geraldo", "city": "Porto Alegre", "state": "RS", "country": "Brasil", "postal_code":
+      "90230060"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer e29509fd-b564-44c6-84f2-54b602220b8f
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '582'
+      Content-Type:
+      - application/json
+      seller_id:
+      - d167cde9-1c7f-4af9-a8a2-d38424dad863
+      user-agent:
+      - getnet-py/1.1
+    method: POST
+    uri: https://api-homologacao.getnet.com.br/v1/customers
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAIWQQU7DMBBFr2JlTSo7aRKnKwoSSGyo6AGiqT2llpw4sp2IquppOAoXY1xBy46N
+        Zf/3xzPzT1lAa9F3RmerTIu6URrbXKhmny9h3+Ygoch1KZfFUoOWdZndZWoK0fW/RddXIbgUsqjJ
+        sTc+xG6AHsnw4r4+HYkWbpoGtjV2BpK1U1OPQ+zicUzocfP0Vx2mfoeedC6KclnVjZSS+HhwA95g
+        VVWibVspm6ZOAyi0/zh2xsdDpyGmnqJt6pwXeSGIuF1AP0M0biD0ypQ1NAiyiD0zdPEYArLBsdEC
+        nR8LqsEejP0Txv1FWCjXL3aeeIgQp0AGUNHMSAponT7KVieCHjESXM8L9uAh0Fe0gutHiykDIluw
+        wNJw130E5zzlZKjaqIuHYmbP6MHqFLcy8Ujqxvno2Nriu8efQdLGb9tLi2mIPrmuXUdHDtspp5Or
+        5UXJec2z8/kbeD/VgioCAAA=
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '359'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 14 Sep 2020 17:38:42 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Set-Cookie:
+      - 0d0646cad067a2ca0c6f661a843443de=bb9a87410a67c72f776745fa57d440e8; Path=/v1;
+        HttpOnly; Secure; Domain=api-homologacao.getnet.com.br
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-EdgeConnect-MidMile-RTT:
+      - '111'
+      X-EdgeConnect-Origin-MEX-Latency:
+      - '2826'
+      X-Powered-By:
+      - '50606'
+      preload:
+      - ''
+    status:
+      code: 200
+      message: OK
+version: 1
