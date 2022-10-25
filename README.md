@@ -45,20 +45,13 @@ client = Client("seller_id", "client_id", "client_secret", Environment.SANDBOX)
 client.auth() # Optional, will be executed if needed
 ``` 
 
-### Using the Services
-With the client instantiated, the services can be accessed as follows:
-
-```python
-service = client.token_service()
-service.generate(...)
-```
-
+# Using the Services
 ### Examples
 
 ##### Tokenizing a credit card
 ```python
-number_token = client.generate_card_token("5155901222280001", "customer_21081826")
-number_token.number_token # token genered in getnet
+token = client.generate_card_token("5155901222280001", "customer_21081826")
+token.number_token # token genered in getnet
 ```
 
 ### Generate a credit card
@@ -82,7 +75,7 @@ order = client.order(order_id)
 ### Generate a customer
 ```python
 customer_id = "12345"
-order = client.customer(order_id) 
+customer = client.customer(order_id) 
 ```
 
 ### Generate a Credit Card Payment
@@ -124,6 +117,7 @@ cancel_payment_credit.credit_cancel.message # "Credit transaction cancelled suce
 
 Authors
 ------
+
 Fábio Vitor <fabvitor2010@gmail.com> 
 and
 Ramon Soares <contact@ramon.dev.br>
