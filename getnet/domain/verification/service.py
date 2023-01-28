@@ -1,11 +1,13 @@
 """Implement Token Service"""
 
-from getnet.services.service import Service as BaseService
-from getnet.services.verification.card_verification import CardVerification
-from getnet.services.verification.card_verified import CardVerified
+from getnet.domain.services import Service as BaseService
+from getnet.domain.verification.card_verification import CardVerification
+from getnet.domain.verification.card_verified import CardVerified
+from getnet.infra.dtos.card_verification import CardVerificationResponse
+from pydantic import ValidationError
 
 
-class Service(BaseService):
+class CardVerificationService(BaseService):
     """Represents the token service operations"""
 
     path = "/v1/cards/verification"
@@ -17,7 +19,6 @@ class Service(BaseService):
             card (Card:
         """
 
-
         self._client.request.headers = (
             {
                 "Accept":"application/json, text/plain, */*",
@@ -27,4 +28,10 @@ class Service(BaseService):
         )
         
         response = self._post(self.path, json=card.as_dict())
-        return CardVerified(response.get("status"))
+        
+        try:
+            card_verification_data = CardVerificationResponse(**response)
+        except ValidationError as e:
+            raise e.errors()
+
+        return CardVerified(card_verification_data.status)

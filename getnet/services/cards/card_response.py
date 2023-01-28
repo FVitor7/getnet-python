@@ -9,7 +9,7 @@ from typing import Union
 from dateutil import parser
 
 from getnet.services.cards.card import Card
-from getnet.services.token.card_token import CardToken
+from getnet.domain.token.card_token import CardToken
 
 
 class NewCardResponse(object):

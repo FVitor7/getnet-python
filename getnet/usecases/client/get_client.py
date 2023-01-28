@@ -3,11 +3,17 @@ from datetime import datetime, timedelta
 from typing import Union, Optional
 
 import requests
+from getnet.domain.authentication import Authentication
 
-from getnet.environment import Environment
-from getnet.services import card_bin, token, verification, payments
+from getnet.usecases.environment import Environment
+from getnet.services import payments
+from getnet.domain.card_bin import CardBinInfo
+from getnet.domain.verification import CardVerificationService, CardVerification
+from getnet.domain.token import Service as TokenService
+
 from getnet.services.payments.credit import card
-from getnet.services.token.card_token import CardToken
+from getnet.domain.token.card_token import CardToken
+from getnet.domain.token.card_number import CardNumber
 from getnet.utils import handler_request, handler_request_exception
 
 __all__ = ["Client"]
@@ -25,6 +31,7 @@ class Client(object):
     environment: Environment = Environment.SANDBOX
     access_token: Optional[Union[str, None]] = None
     access_token_expires: Optional[Union[int, None]] = None
+    
 
     def __init__(
         self,
@@ -61,42 +68,13 @@ class Client(object):
     def _handler_request(self):
         return handler_request(self, LOGGER)
 
-    def access_token_expired(self) -> bool:
-        """Returns true if not have an token or is expired
+    def access_token_expired(self) -> Authentication.access_token_expired:
+        return Authentication.access_token_expired(self)
+    
+    def auth(self) -> Authentication.auth:
+        return Authentication.auth(self)
 
-        Returns:
-            bool
-        """
-        return (
-            self.access_token is None
-            or self.access_token_expires < datetime.timestamp(datetime.now())
-        )
-
-    def auth(self) -> None:
-        if self.access_token_expired():
-            path = "/auth/oauth/v2/token"
-            data = {"scope": "oob", "grant_type": "client_credentials"}
-
-            response = self.request.post(
-                self.base_url + path,
-                data=data,
-                auth=(self.client_id, self.client_secret),
-            )
-            if not response.ok:
-                raise handler_request_exception(response)
-
-            response_data = response.json()
-
-            self.access_token = response_data.get("access_token")
-            self.access_token_expires = int(
-                datetime.timestamp(
-                    datetime.now() + timedelta(seconds=response_data.get("expires_in"))
-                )
-            )
-            self.request.headers.update(
-                {"Authorization": "Bearer {}".format(self.access_token)}
-            )
-
+    
     def get(self, path, **kwargs) -> dict:
         """
         Args:
@@ -150,10 +128,6 @@ class Client(object):
 
             return True
 
-    def token_service(self) -> token.Service:
-        """Return a instance of token service"""
-        return token.Service(self)
-
     def generate_card_token(self, card_number: str, customer_id: str) -> CardToken:
         """Shortcut to card token generation
 
@@ -164,21 +138,14 @@ class Client(object):
         Raises:
             * AttributeError, RequestError
         """
-        return self.token_service().generate(token.CardNumber(card_number, customer_id))
+        return TokenService(self).generate(CardNumber(card_number, customer_id))
 
-    def verification_service(self) -> verification.Service:
-        """Return a instance of token service"""
-        return verification.Service(self)
 
     def card_verified(self, number_token, expiration_month, expiration_year,  cardholder_name, brand=None, security_code=None) -> bool:
-        return self.verification_service().verification(verification.CardVerification(number_token, expiration_month, expiration_year, cardholder_name, brand, security_code))
-
-    def check_bin_service(self) -> card_bin.Service:
-        """Return a instance of token service"""
-        return card_bin.Service(self)
+        return CardVerificationService(self).verification(CardVerification(number_token, expiration_month, expiration_year, cardholder_name, brand, security_code))
 
     def card_bin(self, card_bin: str) -> dict:
-        return self.check_bin_service().binlookup(card_bin)
+        return CardBinInfo(self).binlookup(card_bin)
 
     def order(self, order_id: str, sales_tax: int = None, product_type: str = None) -> payments.Order:
         return payments.Order(order_id, sales_tax, product_type)

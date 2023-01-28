@@ -5,7 +5,7 @@ Implements Card Entity
 import re
 from typing import Union, Optional
 
-from getnet.services.token.card_token import CardToken
+from getnet.domain.token.card_token import CardToken
 
 BRANDS = (
     "mastercard",

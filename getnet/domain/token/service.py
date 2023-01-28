@@ -1,9 +1,10 @@
 """Implement Token Service"""
 
-from getnet.services.service import Service as BaseService
-from getnet.services.token.card_number import CardNumber
-from getnet.services.token.card_token import CardToken
-
+from getnet.domain.services import Service as BaseService
+from getnet.domain.token.card_number import CardNumber
+from getnet.domain.token.card_token import CardToken
+from getnet.infra.dtos.card_token import CardTokenResponse
+from pydantic import ValidationError
 
 class Service(BaseService):
     """Represents the token service operations"""
@@ -27,4 +28,10 @@ class Service(BaseService):
         )  
         
         response = self._post(self.path, json=card.as_dict())
-        return CardToken(response.get("number_token"))
+
+        try:
+            token_data = CardTokenResponse(**response)
+        except ValidationError as e:
+            raise e.errors()
+
+        return CardToken(token_data.number_token)

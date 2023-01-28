@@ -6,8 +6,8 @@ This package implements an API client to Santander Getnet.
 """
 import logging
 
-from .client import Client
-from .environment import Environment
+from .usecases.client import Client
+from .usecases.environment import Environment
 
 __version__ = "1.2"
 

@@ -1,4 +1,4 @@
-from getnet.errors.request_error import RequestError
+from getnet.usecases.errors.request_error import RequestError
 
 
 class BusinessError(RequestError):

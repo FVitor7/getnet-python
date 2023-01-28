@@ -1,6 +1,6 @@
 from requests.models import Response
 
-from getnet import errors
+from getnet.usecases import errors
 
 
 class handler_request:

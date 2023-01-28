@@ -9,7 +9,7 @@ from getnet.services.cards.card import Card
 from getnet.services.cards.card_response import CardResponse, NewCardResponse
 from getnet.services.cards.status import Status
 from getnet.services.service import Service as BaseService, ResponseList
-from getnet.services.token.card_token import CardToken
+from getnet.domain.token.card_token import CardToken
 
 LOGGER = logging.getLogger(__name__)
 

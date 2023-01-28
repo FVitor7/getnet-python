@@ -1,11 +1,10 @@
 """Implement Token Service"""
+from pydantic import ValidationError
+from getnet.domain.services import Service as BaseService
+from getnet.infra.dtos.card_bin import CardBinResponse
 
-from getnet.services.service import Service as BaseService
-from getnet.services.verification.card_verification import CardVerification
-from getnet.services.verification.card_verified import CardVerified
 
-
-class Service(BaseService):
+class CardBinInfo(BaseService):
     """Represents the token service operations"""
 
     path = "/v1/cards/binlookup/"
@@ -19,6 +18,9 @@ class Service(BaseService):
 
         url = f"{self.path}{card_bin}"
 
-        response = self._get(url)
+        try:
+            card_data = CardBinResponse(**self._get(url))
+        except ValidationError as e:
+            raise e.errors()
 
-        return response.json()
+        return card_data
