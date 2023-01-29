@@ -48,7 +48,10 @@ client.auth() # Optional, will be executed if needed
 # Using the Services
 ### Examples
 
-
+##### Consult Card BIN Informations
+```python
+card_bin = client.card_bin("515590") # Card related information and Status
+```
 
 ##### Tokenizing a Credit Card
 ```python
