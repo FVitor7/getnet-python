@@ -4,17 +4,22 @@ import pytest
 from pytest_mock import MockerFixture
 
 from getnet import Client
-from getnet.errors import RequestError
-from getnet.services import token, cards, customers
-from getnet.services.token.card_token import CardToken
+from getnet.usecases.errors import RequestError
+from getnet.services import cards, customers
+from getnet.domain.token.card_token import CardToken
+from getnet.domain import token
+import os
 
+seller_id = os.getenv('SELLER_ID')
+client_id = os.getenv('CLIENT_ID')
+client_secret = os.getenv('CLIENT_SECRET')
 
 @pytest.fixture
 def client():
     return Client(
-        "d1c3d817-1676-4e28-a789-1e10c3af15b0",
-        "d1c3d817-1676-4e28-a789-1e10c3af15b0",
-        "388183f9-ab04-4c21-9234",
+        seller_id,
+        client_id,
+        client_secret,
     )
 
 

@@ -16,7 +16,6 @@ build/
 dist/
 .tox/
 .env
-
 .workon
 .*/
 testes.py

@@ -48,15 +48,77 @@ client.auth() # Optional, will be executed if needed
 # Using the Services
 ### Examples
 
-##### Tokenizing a credit card
+##### Consult Card BIN Informations
+```python
+card_bin = client.card_bin("515590") # Card related information and Status
+```
+
+##### Tokenizing a Credit Card
 ```python
 token = client.generate_card_token("5155901222280001", "customer_21081826")
 token.number_token # token genered in getnet
 ```
 
-### Generate a credit card
+##### Verify a Credit Card
 ```python
-card = client.credit_card(
+card_verified: bool = client.card_verified(
+    number_token=tokenizado.number_token,  
+    expiration_month="12",
+    expiration_year="28"
+    cardholder_name="JOAO DA SILVA",
+    brand="Mastercard",
+    security_code="123",
+) # True or False
+
+```
+
+### Customer
+```python
+customer_service = client.customer_service()
+```
+#### Create Customer
+```python
+customer_data = client.customer(
+    {
+        "first_name":"Joao",
+        "last_name":"Pedro da Silva",
+        "document_type":"CPF",
+        "document_number":"77261241563",
+        "birth_date":"1988-04-08",
+        "phone_number":"5575999999999",
+        "celphone_number":"5575999999999",
+        "email":"fabvitor@test.com",
+        "observation":"Test CLient",
+        "customer_id":"77261241563", # or uuid4
+        "seller_id":"6eb2412c-165a-41cd-b1d9-76c575d70a28",
+        "address":{
+            "street": "Rua Test",
+            "number": "40",
+            "complement": "Casa",
+            "district": "Centro",
+            "city": "São Paulo",
+            "state": "SP",
+            "country": "Brasil",
+            "postal_code": "77019098",
+        },
+    }
+)
+
+customer = customer_service.create(customer_data)
+
+```
+#### Get Customer
+```python
+customer = customer_service.get("77261241563")
+```
+#### List All Customers Saved in Getnet
+```python
+customers = customer_service.all()
+```
+
+### Generate a Credit Card
+```python
+payment_card = client.credit_card(
     number_token=tokenizado.number_token,  
     cardholder_name="JOAO DA SILVA",
     security_code="123",
@@ -65,17 +127,14 @@ card = client.credit_card(
     expiration_year="28"
     )
 ```
-
-### Generate a order
+### Generate a Order
 ```python
-order_id = "12345"
-order = client.order(order_id) 
+payment_order = client.order("12345") 
 ```
 
-### Generate a customer
+### Generate a Payment Customer
 ```python
-customer_id = "12345"
-customer = client.customer(order_id) 
+payment_customer = client.customer(customer) 
 ```
 
 ### Generate a Credit Card Payment
@@ -87,10 +146,17 @@ payment = client.create_credit_transaction(
     save_card_data=False,
     transaction_type="FULL",
     number_installments=1,
-    order=order,
-    customer=customer,
-    card=card
-    )
+    order=payment_order,
+    customer=payment_customer,
+    card=payment_card,
+    shipping_address={
+        "street": "Rua Test",
+        "number": "40",
+        "city": "São Paulo",
+        "state": "SP",
+        "postal_code": "77019098"
+    }, # The user's address may be different from the address registered with the consumer
+)
     
 payment_id = payment.payment_id # ID
 status = payment.status # AUTHORIZED
@@ -104,13 +170,13 @@ payment_ajusted.status # APROVED
 
 ### Capture a Credit Card Payment
 ```python
-captured_payment = client.capture_credit_transaction(id_pagamento, "2000")
+captured_payment = client.capture_credit_transaction(payment_id, "2000")
 captured_payment.status # CONFIRMED
 ```
 
 ### Cancel a Credit Card Payment
 ```python
-canceled_order = client.capture_credit_transaction(id_pagamento, "2000")
+canceled_order = client.cancel_credit_transaction(payment_id)
 canceled_order.status # CANCELED
 cancel_payment_credit.credit_cancel.message # "Credit transaction cancelled sucessfully"
 ```
