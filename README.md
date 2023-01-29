@@ -53,25 +53,6 @@ client.auth() # Optional, will be executed if needed
 card_bin = client.card_bin("515590") # Card related information and Status
 ```
 
-##### Tokenizing a Credit Card
-```python
-token = client.generate_card_token("5155901222280001", "customer_21081826")
-token.number_token # token genered in getnet
-```
-
-##### Verify a Credit Card
-```python
-card_verified: bool = client.card_verified(
-    number_token=tokenizado.number_token,  
-    expiration_month="12",
-    expiration_year="28"
-    cardholder_name="JOAO DA SILVA",
-    brand="Mastercard",
-    security_code="123",
-) # True or False
-
-```
-
 ### Customer
 ```python
 customer_service = client.customer_service()
@@ -115,7 +96,24 @@ customer = customer_service.get("77261241563")
 ```python
 customers = customer_service.all()
 ```
+##### Tokenizing a Credit Card
+```python
+token = client.generate_card_token("5155901222280001", customer.customer_id)
+token.number_token # token genered in getnet
+```
 
+##### Verify a Credit Card
+```python
+card_verified: bool = client.card_verified(
+    number_token=tokenizado.number_token,  
+    expiration_month="12",
+    expiration_year="28"
+    cardholder_name="JOAO DA SILVA",
+    brand="Mastercard",
+    security_code="123",
+) # True or False
+
+```
 ### Generate a Credit Card
 ```python
 payment_card = client.credit_card(

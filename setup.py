@@ -30,7 +30,7 @@ setuptools.setup(
     author_email="fabvitor2010@gmail.com",
     url="https://github.com/FVitor7/getnet-python",
     packages=setuptools.find_packages(),
-    python_requires=">=3.2",
+    python_requires=">=3.6",
     install_requires=["requests>=2.0.0", "requests-oauthlib>=1.2.0", "python-dateutil==2.8.1"],
     classifiers=[
         "Intended Audience :: Developers",
