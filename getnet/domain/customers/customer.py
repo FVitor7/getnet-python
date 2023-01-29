@@ -1,6 +1,6 @@
 from typing import Union
 
-from getnet.services.customers.address import Address
+from getnet.domain.customers.address import Address
 
 
 class Customer:

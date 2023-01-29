@@ -1,9 +1,11 @@
 import re
+from getnet.infra.dtos.customer import CustomerSchema
+from pydantic import ValidationError
+from getnet.usecases.errors import RequestError
+from getnet.domain.customers.customer import Customer
+from getnet.domain.customers.customer_response import CustomerResponse
+from getnet.domain.services import Service as BaseService, ResponseList
 
-from getnet.errors import RequestError
-from getnet.services.customers.customer import Customer
-from getnet.services.customers.customer_response import CustomerResponse
-from getnet.services.service import Service as BaseService, ResponseList
 
 DOCUMENT_TYPES = ("CPF", "CNPJ")
 DOCUMENT_NUMBER_REGEX = re.compile(r"\A\d{11,15}\Z")
@@ -14,10 +16,14 @@ class Service(BaseService):
 
     def create(self, customer: Customer, return_if_exists: bool = True) -> Customer:
         customer.seller_id = self._client.seller_id
-
+        
         try:
             response = self._post(self._format_url(), json=customer.as_dict())
-            return CustomerResponse(**response)
+            try:
+                customer_schema = CustomerSchema(**response)
+            except ValidationError as e:
+                raise e.errors()
+            return CustomerResponse(**customer_schema.dict())
         except RequestError as err:
             if return_if_exists and err.error_code == "400":
                 return self.get(customer.customer_id)
@@ -64,5 +70,8 @@ class Service(BaseService):
 
     def get(self, customer_id: str):
         response = self._get(self._format_url(customer_id=customer_id))
-
-        return CustomerResponse(**response)
+        try:
+            customer_schema = CustomerSchema(**response)
+        except ValidationError as e:
+            raise e.errors()
+        return CustomerResponse(**customer_schema.dict())

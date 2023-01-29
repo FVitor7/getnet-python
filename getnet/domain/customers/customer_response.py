@@ -1,4 +1,4 @@
-from getnet.services.customers.customer import Customer
+from getnet.domain.customers.customer import Customer
 
 
 class CustomerResponse(Customer):

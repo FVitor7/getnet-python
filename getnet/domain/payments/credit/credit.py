@@ -1,6 +1,6 @@
 from typing import Union, Optional
 
-from getnet.services.payments.credit.card import Card
+from getnet.domain.payments.credit.card import Card
 
 TRANSACTION_FULL = "FULL"
 TRANSACTION_INSTALL = "INSTALL_NO_INTEREST"

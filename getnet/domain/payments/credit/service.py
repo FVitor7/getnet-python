@@ -1,18 +1,18 @@
 from typing import Union
 from uuid import UUID
 
-from getnet.services.payments import Customer
-from getnet.services.payments.credit.credit import Credit
-from getnet.services.payments.credit.credit_adjust import CreditAdjustPaymentResponse
-from getnet.services.payments.credit.credit_cancel import CreditCancelPaymentResponse
-from getnet.services.payments.credit.credit_capture import CreditCapturePaymentResponse
-from getnet.services.payments.credit.credit_response import CreditPaymentResponse
-from getnet.services.payments.order import Order
-from getnet.services.service import Service
-from getnet.services.utils import Device
+from getnet.domain.payments import Customer
+from getnet.domain.payments.credit.credit import Credit
+from getnet.domain.payments.credit.credit_adjust import CreditAdjustPaymentResponse
+from getnet.domain.payments.credit.credit_cancel import CreditCancelPaymentResponse
+from getnet.domain.payments.credit.credit_capture import CreditCapturePaymentResponse
+from getnet.domain.payments.credit.credit_response import CreditPaymentResponse
+from getnet.domain.payments.order import Order
+from getnet.domain.services import Service as BaseService
+#from getnet.services.utils import Device
 
 
-class Service(Service):
+class Service(BaseService):
     path = "/v1/payments/credit"
 
     def create(
@@ -22,9 +22,10 @@ class Service(Service):
         order: Order,
         credit: Credit,
         customer: Customer,
-        device: Device = None,
+        #device: Device = None,
+        shipping_address: dict = None,
     ) -> CreditPaymentResponse:
-        
+
         data = {
             "seller_id": self._client.seller_id,
             "amount": amount,
@@ -33,16 +34,11 @@ class Service(Service):
             "credit": credit, #.as_dict(),
             "customer": customer.as_dict(),
             "device": {},
-            "shippings": [{
-                "address": {
-
-                }
-            }],
-            "sub_merchant": {}
+            "shippings": [{"address":shipping_address}],
         }
 
-        if device is not None:
-            data["device"] = device.as_dict()
+        # if device is not None:
+        #     data["device"] = device.as_dict()
 
         self._client.request.headers = {
             "Accept": "application/json, text/plain, */*",
@@ -50,8 +46,9 @@ class Service(Service):
             "Authorization": "Bearer {}".format(self._client.access_token),
             "seller_id": self._client.seller_id
             }
-
+        print(data)
         response = self._post(self._format_url(), json=data)
+        print(response)
         
         return CreditPaymentResponse(**response)
 

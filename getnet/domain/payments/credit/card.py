@@ -1,4 +1,4 @@
-from getnet.services.cards import Card as BaseCard
+from getnet.domain.cards import Card as BaseCard
 
 
 class Card(BaseCard):

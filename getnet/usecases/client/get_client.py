@@ -6,14 +6,15 @@ import requests
 from getnet.domain.authentication import Authentication
 
 from getnet.usecases.environment import Environment
-from getnet.services import payments
+from getnet.domain import payments
 from getnet.domain.card_bin import CardBinInfo
 from getnet.domain.verification import CardVerificationService, CardVerification
 from getnet.domain.token import Service as TokenService
-
-from getnet.services.payments.credit import card
+from getnet.domain.customers import Service as CustomersService
+from getnet.domain.payments.credit import card
 from getnet.domain.token.card_token import CardToken
 from getnet.domain.token.card_number import CardNumber
+from getnet.domain.customers import Customer, Address
 from getnet.utils import handler_request, handler_request_exception
 
 __all__ = ["Client"]
@@ -150,8 +151,15 @@ class Client(object):
     def order(self, order_id: str, sales_tax: int = None, product_type: str = None) -> payments.Order:
         return payments.Order(order_id, sales_tax, product_type)
     
-    def customer(self, customer_id: str) -> payments.Customer:
-        return payments.Customer(customer_id)
+    def customer_service(self) -> CustomersService:
+        """Return a instance of token service"""
+        return CustomersService(self)
+
+    def customer(self, customer_data) -> Customer:
+        return Customer(**customer_data)
+
+    def payment_customer(self, customer) -> payments.Customer:
+        return payments.Customer(customer)
     
     # Payments  Credit
     def payment_credit_service(self) -> payments.credit.Service:
@@ -161,17 +169,17 @@ class Client(object):
     def credit_card(self,number_token, cardholder_name, security_code, brand, expiration_month, expiration_year) -> card.Card:
         return card.Card(number_token=number_token, cardholder_name=cardholder_name, security_code=security_code, brand=brand, expiration_month=expiration_month, expiration_year=expiration_year)
 
-    def create_credit_transaction(self, amount, delayed, pre_authorization, save_card_data, transaction_type, number_installments, order, customer, card, currency="BRL") -> payments.credit.Service:
+    def create_credit_transaction(self, amount, delayed, pre_authorization, save_card_data, transaction_type, number_installments, order, customer, card, shipping_address, currency="BRL") -> payments.credit.Service:
         credit = {
             "delayed": delayed,
             "pre_authorization": pre_authorization,
             "save_card_data": save_card_data,
             "transaction_type": transaction_type,
             "number_installments": number_installments,
-            "card": card._as_dict()
+            "card": card._as_dict(),
         }
 
-        return self.payment_credit_service().create(amount, currency, order, credit, customer)
+        return self.payment_credit_service().create(amount, currency, order, credit, customer, shipping_address)
 
     def cancel_credit_transaction(self, payment_id):
         return self.payment_credit_service().cancel(payment_id)

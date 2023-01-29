@@ -3,8 +3,8 @@ from typing import Union
 
 from dateutil import parser
 
-from getnet.services.payments.credit.credit import Credit
-from getnet.services.payments.payment_response import PaymentResponse
+from getnet.domain.payments.credit.credit import Credit
+from getnet.domain.payments.payment_response import PaymentResponse
 
 
 class CreditResponse(Credit):
