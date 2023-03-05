@@ -25,3 +25,7 @@ class BusinessError(RequestError):
     @property
     def status(self):
         return self.details.get("status")
+    
+    def as_dict(self) -> dict:
+        """Format the data as dict to be sent to Getnet"""
+        return self.__dict__.copy()
