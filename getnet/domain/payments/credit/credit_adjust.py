@@ -45,3 +45,7 @@ class CreditAdjustPaymentResponse(PaymentResponse):
         self.adjustment_acquirer_transaction_id = adjustment_acquirer_transaction_id
 
         super(CreditAdjustPaymentResponse, self).__init__(**kwargs)
+
+    def as_dict(self) -> dict:
+        """Format the data as dict to be sent to Getnet"""
+        return self.__dict__.copy()

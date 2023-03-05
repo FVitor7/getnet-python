@@ -60,6 +60,9 @@ class Client(object):
 
         self._setup_client()
 
+        if not self.access_token:
+            self.auth()
+
     def _setup_client(self) -> None:
         self.request = requests.Session()
         self.request.headers.update(
@@ -161,7 +164,6 @@ class Client(object):
     def payment_customer(self, customer) -> payments.Customer:
         return payments.Customer(customer)
     
-    # Payments  Credit
     def payment_credit_service(self) -> payments.credit.Service:
         """Return a instance of token service"""
         return payments.credit.Service(self)

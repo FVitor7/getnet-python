@@ -17,9 +17,6 @@ class CreditResponse(Credit):
     terminal_nsu: str
     transaction_id: str
     brand: str
-    # first_installment_amount: str
-    # other_installment_amount: str
-    # total_installment_amount: str
 
     def __init__(
         self,
@@ -32,9 +29,6 @@ class CreditResponse(Credit):
         terminal_nsu: str,
         transaction_id: str,
         brand: str,
-        # first_installment_amount: str,
-        # other_installment_amount: str,
-        # total_installment_amount: str,
         **kwargs,
     ):
         self.authorization_code = authorization_code
@@ -50,12 +44,13 @@ class CreditResponse(Credit):
         self.terminal_nsu = terminal_nsu
         self.transaction_id = transaction_id
         self.brand = brand
-        # self.first_installment_amount = first_installment_amount
-        # self.other_installment_amount = other_installment_amount
-        # self.total_installment_amount = total_installment_amount
+
         kwargs.update({"card": None})
+
         super(CreditResponse, self).__init__(**kwargs)
 
+    def _as_dict(self):
+        return self.__dict__.copy()
 
 class CreditPaymentResponse(PaymentResponse):
     credit: CreditResponse
@@ -67,3 +62,10 @@ class CreditPaymentResponse(PaymentResponse):
             if isinstance(credit, CreditResponse) or credit is None
             else CreditResponse(**credit)
         )
+
+    def as_dict(self) -> dict:
+        """Format the data as dict to be sent to Getnet"""
+        data = self.__dict__.copy()
+        data["credit"] = self.credit._as_dict()
+
+        return data

@@ -25,6 +25,6 @@ class CustomerSchema(BaseModel):
   celphone_number: str
   email: str
   observation: str
-  status: str
+  status: Optional[str]
   address: AddressSchema
 

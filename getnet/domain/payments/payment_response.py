@@ -35,3 +35,6 @@ class PaymentResponse:
             if isinstance(received_at, datetime) or received_at is None
             else parser.isoparse(received_at)
         )
+
+    def _as_dict(self):
+        return self.__dict__.copy()

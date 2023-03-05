@@ -18,6 +18,8 @@ class CreditCancelResponse:
         )
         self.message = message
 
+    def _as_dict(self):
+        return self.__dict__.copy()
 
 class CreditCancelPaymentResponse(PaymentResponse):
     credit_cancel: CreditCancelResponse
@@ -29,3 +31,11 @@ class CreditCancelPaymentResponse(PaymentResponse):
             if isinstance(credit_cancel, CreditCancelResponse) or credit_cancel is None
             else CreditCancelResponse(**credit_cancel)
         )
+    
+    def as_dict(self) -> dict:
+        """Format the data as dict to be sent to Getnet"""
+        data = self.__dict__.copy()
+        data["credit_cancel"] = self.credit_cancel._as_dict()
+
+        return data
+

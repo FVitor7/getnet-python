@@ -9,8 +9,6 @@ from getnet.domain.payments.credit.credit_capture import CreditCapturePaymentRes
 from getnet.domain.payments.credit.credit_response import CreditPaymentResponse
 from getnet.domain.payments.order import Order
 from getnet.domain.services import Service as BaseService
-#from getnet.services.utils import Device
-
 
 class Service(BaseService):
     path = "/v1/payments/credit"
@@ -22,7 +20,6 @@ class Service(BaseService):
         order: Order,
         credit: Credit,
         customer: Customer,
-        #device: Device = None,
         shipping_address: dict = None,
     ) -> CreditPaymentResponse:
 
@@ -31,14 +28,11 @@ class Service(BaseService):
             "amount": amount,
             "currency": currency,
             "order": order.as_dict(),
-            "credit": credit, #.as_dict(),
+            "credit": credit,
             "customer": customer.as_dict(),
             "device": {},
             "shippings": [{"address":shipping_address}],
         }
-
-        # if device is not None:
-        #     data["device"] = device.as_dict()
 
         self._client.request.headers = {
             "Accept": "application/json, text/plain, */*",
@@ -46,9 +40,7 @@ class Service(BaseService):
             "Authorization": "Bearer {}".format(self._client.access_token),
             "seller_id": self._client.seller_id
             }
-        print(data)
         response = self._post(self._format_url(), json=data)
-        print(response)
         
         return CreditPaymentResponse(**response)
 
@@ -93,4 +85,5 @@ class Service(BaseService):
         }
 
         response = self._post(self._format_url(path="/{payment_id}/adjustment", payment_id=str(payment_id)), json=data)
-        return CreditAdjustPaymentResponse(**response)
+        return CreditAdjustPaymentResponse(**response) 
+    

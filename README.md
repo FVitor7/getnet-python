@@ -178,3 +178,19 @@ canceled_order = client.cancel_credit_transaction(payment_id)
 canceled_order.status # CANCELED
 cancel_payment_credit.credit_cancel.message # "Credit transaction cancelled sucessfully"
 ```
+
+
+## Handling error returns
+Errors related to specific getnet returns can be accessed through the BusinessError Class
+
+Example in Cancel Transaction:
+```python
+try:
+    canceled_order = client.cancel_credit_transaction(payment_id)
+except Exception as getnet_error:
+    error_code = getnet_error.details["error_code"]
+    print(error_code)  # PAYMENTS-082
+
+    error_msg = getnet_error.details["description"]
+    print(error_msg) # Cancelamento inválido
+```
