@@ -9,7 +9,7 @@ import logging
 from .usecases.client import Client
 from .usecases.environment import Environment
 
-__version__ = "2.1"
+__version__ = "2.2"
 
 import requests
 
