@@ -1,4 +1,4 @@
-from getnet.usecases.errors.request_error import RequestError
+from getnet.domain.usecases.errors.request_error import RequestError
 
 __ALL__ = [
     "BadRequest",

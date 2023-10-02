@@ -1,7 +1,7 @@
 import re
-from getnet.infra.dtos.customer import CustomerSchema
+from getnet.application.dtos.customer import CustomerSchema
 from pydantic import ValidationError
-from getnet.usecases.errors import RequestError
+from getnet.domain.usecases.errors import RequestError
 from getnet.domain.customers.customer import Customer
 from getnet.domain.customers.customer_response import CustomerResponse
 from getnet.domain.services import Service as BaseService, ResponseList

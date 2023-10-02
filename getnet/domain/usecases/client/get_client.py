@@ -5,7 +5,7 @@ from typing import Union, Optional
 import requests
 from getnet.domain.authentication import Authentication
 
-from getnet.usecases.environment import Environment
+from getnet.domain.usecases.environment import Environment
 from getnet.domain import payments
 from getnet.domain.card_bin import CardBinInfo
 from getnet.domain.verification import CardVerificationService, CardVerification
@@ -191,3 +191,10 @@ class Client(object):
 
     def adjust_credit_transaction(self, payment_id: str, amount: str, currency="BRL"):
         return self.payment_credit_service().adjust(payment_id, amount, currency)
+    
+    def payment_pix_service(self) -> payments.pix.Service:
+        """Return a instance of token service"""
+        return payments.pix.Service(self)
+    
+    def create_pix_transaction(self, amount, customer_id, order_id, currency="BRL") -> payments.credit.Service:
+        return self.payment_pix_service().create(amount, customer_id, order_id, currency)

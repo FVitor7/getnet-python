@@ -4,7 +4,7 @@ import pytest
 from pytest_mock import MockerFixture
 
 from getnet import Client
-from getnet.usecases.errors import RequestError
+from getnet.domain.usecases.errors import RequestError
 from getnet.services import cards, customers
 from getnet.domain.token.card_token import CardToken
 from getnet.domain import token

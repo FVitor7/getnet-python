@@ -3,7 +3,7 @@
 from getnet.domain.services import Service as BaseService
 from getnet.domain.token.card_number import CardNumber
 from getnet.domain.token.card_token import CardToken
-from getnet.infra.dtos.card_token import CardTokenResponse
+from getnet.application.dtos.card_token import CardTokenResponse
 from pydantic import ValidationError
 
 class Service(BaseService):

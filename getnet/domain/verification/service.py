@@ -3,7 +3,7 @@
 from getnet.domain.services import Service as BaseService
 from getnet.domain.verification.card_verification import CardVerification
 from getnet.domain.verification.card_verified import CardVerified
-from getnet.infra.dtos.card_verification import CardVerificationResponse
+from getnet.application.dtos.card_verification import CardVerificationResponse
 from pydantic import ValidationError
 
 

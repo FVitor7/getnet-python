@@ -2,7 +2,7 @@
 import re
 from typing import Optional, Union
 
-from getnet.infra.dtos.authentication import AuthenticationResponse
+from getnet.application.dtos.authentication import AuthenticationResponse
 from getnet.utils import handler_request, handler_request_exception
 from datetime import datetime, timedelta
 from pydantic import ValidationError

@@ -1,7 +1,7 @@
 """Implement Token Service"""
 from pydantic import ValidationError
 from getnet.domain.services import Service as BaseService
-from getnet.infra.dtos.card_bin import CardBinResponse
+from getnet.application.dtos.card_bin import CardBinResponse
 
 
 class CardBinInfo(BaseService):
