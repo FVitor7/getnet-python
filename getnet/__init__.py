@@ -9,7 +9,7 @@ import logging
 from .domain.usecases.client import Client
 from .domain.usecases.environment import Environment
 
-__version__ = "2.8"
+__version__ = "3.1"
 
 import requests
 

@@ -1,5 +1,6 @@
 from typing import Union
 from uuid import UUID
+from getnet.domain.device.device import Device
 
 from getnet.domain.payments import Customer
 from getnet.domain.payments.credit.credit import Credit
@@ -20,7 +21,8 @@ class Service(BaseService):
         order: Order,
         credit: Credit,
         customer: Customer,
-        shipping_address: dict = None,
+        device: Device = None,
+        shippings: dict = None,
     ) -> CreditPaymentResponse:
 
         data = {
@@ -31,8 +33,11 @@ class Service(BaseService):
             "credit": credit,
             "customer": customer.as_dict(),
             "device": {},
-            "shippings": [{"address":shipping_address}],
+            "shippings": shippings,
         }
+        
+        if device is not None:
+            data["device"] = device.as_dict()
 
         self._client.request.headers = {
             "Accept": "application/json, text/plain, */*",

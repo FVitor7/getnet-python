@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Union
+from typing import Union, Optional
 
 from dateutil import parser
 
@@ -7,10 +7,12 @@ from getnet.domain.payments.payment_response import PaymentResponse
 
 
 class CreditCancelResponse:
-    canceled_at: datetime
+    canceled_at: Optional[datetime]
     message: str
 
     def __init__(self, canceled_at: datetime, message: str):
+        if not canceled_at:
+            canceled_at = datetime.now()
         self.canceled_at = (
             canceled_at
             if isinstance(canceled_at, datetime)

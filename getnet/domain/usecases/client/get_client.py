@@ -4,6 +4,7 @@ from typing import Union, Optional
 
 import requests
 from getnet.domain.authentication import Authentication
+from getnet.domain.device.device import Device
 
 from getnet.domain.usecases.environment import Environment
 from getnet.domain import payments
@@ -78,6 +79,16 @@ class Client(object):
     def auth(self) -> Authentication.auth:
         return Authentication.auth(self)
 
+    def device(self, ip_address, device_id) -> Device:
+        """Return a instance of Device
+
+        Args:
+            ip_address IPv4Address: IP Address
+            device_id (str): Device ID
+        Returns:
+            Device
+        """
+        return Device(ip_address, device_id)
     
     def get(self, path, **kwargs) -> dict:
         """
@@ -171,7 +182,7 @@ class Client(object):
     def credit_card(self,number_token, cardholder_name, security_code, brand, expiration_month, expiration_year) -> card.Card:
         return card.Card(number_token=number_token, cardholder_name=cardholder_name, security_code=security_code, brand=brand, expiration_month=expiration_month, expiration_year=expiration_year)
 
-    def create_credit_transaction(self, amount, delayed, pre_authorization, save_card_data, transaction_type, number_installments, order, customer, card, shipping_address, currency="BRL") -> payments.credit.Service:
+    def create_credit_transaction(self, amount, delayed, pre_authorization, save_card_data, transaction_type, number_installments, order, customer, card, device, shippings, currency="BRL") -> payments.credit.Service:
         credit = {
             "delayed": delayed,
             "pre_authorization": pre_authorization,
@@ -180,8 +191,7 @@ class Client(object):
             "number_installments": number_installments,
             "card": card._as_dict(),
         }
-
-        return self.payment_credit_service().create(amount, currency, order, credit, customer, shipping_address)
+        return self.payment_credit_service().create(amount, currency, order, credit, customer, device, shippings)
 
     def cancel_credit_transaction(self, payment_id):
         return self.payment_credit_service().cancel(payment_id)
