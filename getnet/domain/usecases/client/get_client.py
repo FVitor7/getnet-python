@@ -206,5 +206,5 @@ class Client(object):
         """Return a instance of token service"""
         return payments.pix.Service(self)
     
-    def create_pix_transaction(self, amount, customer_id, order_id, currency="BRL") -> payments.credit.Service:
-        return self.payment_pix_service().create(amount, customer_id, order_id, currency)
+    def create_pix_transaction(self, amount, order_id, customer_id, currency="BRL", qr_code_expiration_time="180") -> payments.credit.Service:
+        return self.payment_pix_service().create(amount, order_id, customer_id, currency, qr_code_expiration_time)
