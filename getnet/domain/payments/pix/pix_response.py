@@ -41,11 +41,13 @@ class PixPaymentResponse:
         description: str,
         payment_id: str,
         status: str,
-        additional_data: dict,
+        **kwargs,
+
     ):
         self.description = description
         self.payment_id = payment_id
         self.status = status
+        additional_data = kwargs.get("additional_data", {})
         self.additional_data = AdditionalData(**additional_data)
 
     def _as_dict(self):
